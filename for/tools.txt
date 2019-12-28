@@ -1,0 +1,6 @@
+nmap
+docker
+gdb
+ghidra
+IDA
+BurpSuite
