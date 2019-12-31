@@ -24,3 +24,57 @@ del11s03-in-x0e.1e100.net
 [7] 1257
 [8] 1258
 ```
+
+### ps -auxw | grep http 
+
+```
+id10t       22  0.0  0.0   8572   208 tty1     R    23:50   0:00 grep http
+```
+
+### ps -axu | grep htt
+
+```
+id10t       25  0.0  0.0  14200  1260 tty1     S    23:53   0:00 grep htt 
+```
+
+### !ps:p
+```
+ps -axu | grep htt
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
