@@ -42,7 +42,15 @@ id10t       25  0.0  0.0  14200  1260 tty1     S    23:53   0:00 grep htt
 ps -axu | grep htt
 ```
 
+## password generator
 
+### Bash
+```console
+
+$ chmod +x pwGenerator.sh
+
+$ ./pwGenerator.sh
+```
 
 
 
