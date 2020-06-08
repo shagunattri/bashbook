@@ -4,8 +4,6 @@ $ cat domains | httprobe -c 50 | tee -a hosts # print domains and run httprobe w
 
 $ meg -v -d 1000 -c 50/ # looks for hosts file and fetch paths of domains with its status and allow custom paths
 
-# creates out dir
-
 $ find . -type f #all the files
 
 $ vim index #give files with each request
@@ -36,8 +34,13 @@ $ find . -type f -exec cat {} \; | sort --version-sort -u | vim -
 
 $ sort -u --version-sort 
 
-$  
+$ unfurl -u paths # print all the unique paths
 
+$ gf urls # list urls in file
+
+$ unfurl -u keys #gets query string params
+
+$ echo uber.com | waybackurls | head #look for urls in the wayback machine
 
 
 ## vim
@@ -46,3 +49,10 @@ $
 :%!grep -vi csp
 :%!awk -F':' '{print $3}' #field separator with : and print what's in the third field
 :%!xargs -n1 -I{} sh -c 'echo {} | base64 -d'
+
+
+
+###git 
+$ git checkout master^^^ # go back three commits
+
+$ git checkout - # go to live HEAD ver

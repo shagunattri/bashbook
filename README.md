@@ -45,8 +45,6 @@ ps -axu | grep htt
 ```
 
 ## password generator
-
-### Bash
 ```console
 $ ./pwGenerator.sh
 ```
