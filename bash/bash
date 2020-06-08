@@ -7,3 +7,6 @@
 
 ▶ echo $? #returns status of operation
 
+▶ cat /etc/lsb-release #info os
+
+▶ ldd /usr/bin/ls # list shared objects and used in dynamically linked runtime binaries

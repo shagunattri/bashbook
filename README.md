@@ -8,9 +8,9 @@ PING google.com(xxxx (xxxx)) 56 data bytes
 rtt min/avg/max/mdev = 88.675/88.675/88.675/0.000 ms
 ```
 
-### cat ip.md | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" 
+### cat ip.md | grep "64 bytes" | cut -d " " -f 4 | tr -d ":"
 ```
-del11s03-in-x0e.1e100.net
+xxxx
 ```
 
 ### for ip $(cat iplist.txt); do nmap -sS -p 80 -T4 $ip & done
@@ -48,9 +48,6 @@ ps -axu | grep htt
 
 ### Bash
 ```console
-
-$ chmod +x pwGenerator.sh
-
 $ ./pwGenerator.sh
 ```
 
