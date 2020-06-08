@@ -9,5 +9,9 @@ asciiquarium
 parrot-terminal
 pfetch
 
-
-
+#utils
+xargs
+vim
+nodejs
+npm
+tmux

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+▶ useradd shagun # adduser
+
+▶ su - shagun # switch to user
+
+▶ echo $? #returns status of operation
+

@@ -1,7 +1,7 @@
 ### ping google.com -c 1
 ```
-PING google.com(del11s03-in-x0e.1e100.net (2404:6800:4002:80e::200e)) 56 data bytes
-64 bytes from del11s03-in-x0e.1e100.net (2404:6800:4002:80e::200e): icmp_seq=1 ttl=56 time=88.7 ms
+PING google.com(xxxx (xxxx)) 56 data bytes
+64 bytes from xxxx (xxxx): icmp_seq=1 ttl=56 time=88.7 ms
 
 --- google.com ping statistics ---
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
@@ -24,6 +24,8 @@ del11s03-in-x0e.1e100.net
 [7] 1257
 [8] 1258
 ```
+
+## ps
 
 ### ps -auxw | grep http 
 

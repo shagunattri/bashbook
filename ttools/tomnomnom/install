@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cat tomt | xargs -n1 -I{} go get github.com/tomnomnom/{}

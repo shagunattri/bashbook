@@ -1,0 +1,11 @@
+$ assetfinder example.com | tee -a domains #find domains and subdomains and save in file domains
+
+$ cat domains | httprobe -c 50 | tee -a hosts # print domains and run httprobe with a concurrency of 50 to find alive HTTP/S domains and save in file hosts
+
+$ meg -v / # looks for hosts file and fetch paths of domains with its status and allow custom paths
+
+# creates out dir
+
+$ find . -type f #all the files
+
+$ vim index #give files with each request
