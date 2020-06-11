@@ -8,4 +8,4 @@ Collections of scripts,tools and details about UNIX in general
 
 ***todo***
 
-[ ] port repo onto gitbook
+~~port repo onto gitbook~~ <- not doing this
