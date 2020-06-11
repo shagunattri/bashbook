@@ -1,18 +1,18 @@
-#info gathering(Reconnaissance)
+# info gathering(Reconnaissance)
 theharvestor # harvest mails and subdomains
 sublist3r # list subdomains [[assetfinder is better]]
 crt.sh   # website to find subdomains
 OWASP amass #information gathering
 httprobe # list for alive subdomains
 
-#finding web technologies
+# finding web technologies
 builtwith
 wappalyzer # for active recon
 whatweb # cli tool [[X]]
 burp suite
 google fu
 
-#SCANNIG & ENUMERATION
+# SCANNIG & ENUMERATION
 nmap # network analysis
 nikto #web server scanner
 gobuster #Directory/File, DNS and VHost busting tool written in Go 
@@ -21,7 +21,7 @@ metasploit #to hack and exploit using available scripts in msfconsole
 
 
 
-#pacman
+# pacman
 cmatrix
 neofetch
 lolcat
@@ -32,7 +32,7 @@ asciiquarium
 parrot-terminal
 pfetch
 
-#utils
+# utils
 xargs
 vim
 nodejs
