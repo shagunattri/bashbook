@@ -52,7 +52,7 @@ $ echo uber.com | waybackurls | head #look for urls in the wayback machine
 
 
 
-### git 
+###git 
 $ git checkout master^^^ # go back three commits
 
 $ git checkout - # go to live HEAD ver
