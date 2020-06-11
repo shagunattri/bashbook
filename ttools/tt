@@ -12,13 +12,19 @@ whatweb # cli tool [[X]]
 burp suite
 google fu
 
-#SCANNIG & ENUMERATION
+#SCANNING & ENUMERATION
 nmap # network analysis
 nikto #web server scanner
 gobuster #Directory/File, DNS and VHost busting tool written in Go 
 metasploit #to hack and exploit using available scripts in msfconsole
+smbclient  #make smb connections to file sharing clients
+searchsploit #serch vulnerabilities realted to keywords
+masscan # internet scal port scanner
+Nessus # a web based vulnerability scanner
 
 
+#EXPLOITATION
+netcat # read and write data across network connections and listen for actions and changes
 
 
 #pacman
