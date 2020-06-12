@@ -1,5 +1,5 @@
 #info gathering(Reconnaissance)
-theharvestor # harvest mails and subdomains
+theharvester # harvest mails and subdomains
 sublist3r # list subdomains [[assetfinder is better]]
 crt.sh   # website to find subdomains
 OWASP amass #information gathering
