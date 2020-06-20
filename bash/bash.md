@@ -43,6 +43,8 @@ ctrl + R # recursive search
 
 shutdown now 
 
+env # run program in a modified environment configured path env variable with its purpose
+
  ping google.com -c 1
 ```
 PING google.com(xxxx (xxxx)) 56 data bytes
