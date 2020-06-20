@@ -11,6 +11,37 @@
 
 ▶ ldd /usr/bin/ls # list shared objects and used in dynamically linked runtime binaries
 
+▶ man <name>  h # for less version of man
+
+ls -l # file as a list
+
+everything is a file in linux look at wikipedia for more
+
+ls and ls . are same
+
+uname 
+
+uname -a
+
+free # show memory usage
+
+free -h # human readable format
+
+df fs #disk space
+
+df -h #human readable  format
+
+ps #currently running process
+
+id #current user id
+
+hexdump # show hex values for each character
+
+man ascii
+
+ctrl + R # recursive search
+
+shutdown now 
 
  ping google.com -c 1
 ```
