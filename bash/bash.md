@@ -13,37 +13,65 @@
 
 ▶ man <name>  h # for less version of man
 
-ls -l # file as a list
+▶ ls -l # file as a list
 
-everything is a file in linux look at wikipedia for more
+▶ everything is a file in linux look at wikipedia for more
 
-ls and ls . are same
+▶ ls and ls . are same
 
-uname 
+▶ uname 
 
-uname -a
+▶uname -a
 
-free # show memory usage
+▶ free # show memory usage
 
-free -h # human readable format
+▶ free -h # human readable format
 
-df fs #disk space
+▶ df fs #disk space
 
-df -h #human readable  format
+▶ df -h #human readable  format
 
-ps #currently running process
+▶ ps #currently running process
 
-id #current user id
+▶ id #current user id
 
-hexdump # show hex values for each character
+▶ hexdump # show hex values for each character
 
-man ascii
+▶ man ascii
 
-ctrl + R # recursive search
+▶ ctrl + R # recursive search
 
-shutdown now 
+▶ shutdown now 
 
-env # run program in a modified environment configured path env variable with its purpose
+▶ env # run program in a modified environment configured path env variable with its purpose
+
+$ cd /sys/ #has all system related files which are run to add & change parameters such as 
+            # /sys/class/intel_backlight has settings realated to the backlighting of the keyboard and 
+            # and can be changed by root.
+
+$ # echo 1 . /sys/net/ipv4_forward ## literal meaning of # is `run as root` to make the program run as root 
+
+$ <= in the terminal means you are not running as root `sudo su` does #
+
+# 
+
+$ tee takes input and writes it to a file also stdout
+
+$ echo 1060 | sudo tee brightness # echo output and pipe through tee and change the value of brightness with the value stdout
+
+
+# changing value of scrolllock key LED
+$ cd leds/
+$ cd input4\:\:scrolllock/ 
+$ echo 1 |sudo tee brightness
+
+$ xdg-open bash/bash.md #opens the file in it's appropriate program 
+						# the bash.md file opens in the default tex-editor 
+	
+
+
+
+
 
  ping google.com -c 1
 ```
@@ -89,11 +117,6 @@ id10t       25  0.0  0.0  14200  1260 tty1     S    23:53   0:00 grep htt
  !ps:p
 ```
 ps -axu | grep htt
-```
-
- password generator
-```console
-$ ./pwGenerator.sh
 ```
 
 
