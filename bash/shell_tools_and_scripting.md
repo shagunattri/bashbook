@@ -70,4 +70,47 @@ grep -> search for substring
 
 /dev/null/ - special location where all written changes are later discarded.
 
-$ man test -> utility to evaluate expressions# foobar
+$ man test -> utility to evaluate expressions
+
+# file shell expansions with globbing
+#### available with most shells
+#### wildcard matching using ? and *
+
+For instance, given files foo, foo1, foo2, foo10 and bar, the command rm foo? will delete foo1 and foo2 whereas rm foo* will delete all but bar.
+
+$ ls *.sh #more like some regex anything with a sh
+
+$ ls project? #expand ot a single one
+
+Curly braces {} - Whenever you have a common substring in a series of commands, you can use curly braces for bash to expand this automatically. This comes in very handy when moving or converting files
+
+```console
+convert image.{png,jpg}
+# Will expand to
+convert image.png image.jpg
+
+cp /path/to/project/{foo,bar,baz}.sh /newpath
+# Will expand to
+cp /path/to/project/foo.sh /path/to/project/bar.sh /path/to/project/baz.sh /newpath
+
+# Globbing techniques can also be combined
+mv *{.py,.sh} folder
+# Will move all *.py and *.sh files
+
+
+mkdir foo bar
+# This creates files foo/a, foo/b, ... foo/h, bar/a, bar/b, ... bar/h
+touch {foo,bar}/{a..h}
+touch foo/x bar/y
+# Show differences between files in foo and bar
+diff <(ls foo) <(ls bar)
+# Outputs
+# < x
+# ---
+# > y
+```
+
+## shell tools
+
+$ man mv # manual page for mv
+
