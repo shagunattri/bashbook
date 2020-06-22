@@ -114,3 +114,33 @@ diff <(ls foo) <(ls bar)
 
 $ man mv # manual page for mv
 
+
+$ mlocate #for searching for files and has a cronjob for updating db index with file data
+        #updatedb to update index
+
+$ grep -R foobar # recursive search for foobar
+
+$ rg "import requests" -t py -C 5 ~scratch --stats  # ripgrep search for looking at fileswith the "" stmnt in py files   and a context of 5 lines around it
+                                                    # --stats give stats about the search
+
+$ rg -u --files-without-match "^#\!" -t sh lookfor sh file  with regex 
+
+# -u # ignore hidden files
+
+$ history # prints terminal history
+
+$ history 1 # history from the beginning
+
+$ history 1 | grep convert # cmds with convert
+
+$ Ctrl + r # recursive search 
+
+$ ctrl + r + fzf # good search :)
+
+$ fzf # fuzzy finder
+
+$ ls -R # recursive list dir structure
+
+$ tree # friendly file listing in tree structure
+
+$ broot # listing files with additional files
