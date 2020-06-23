@@ -63,7 +63,7 @@ tail -n10 -> 10 last lines
 
 tail gives last 10 lines at the tail
 
-awk is alsoa full blown programming language
+awk is also a full blown programming language
 
 awk -> column based data parser
 parses data in whitespace separated columns and 
@@ -79,3 +79,39 @@ awk '$! == 1 && ~ /^c.*e$' {print $0}' -> search string where 1st column is 1 an
 
 awk ' BEGIN {rows = 0} $! == 1 && ~ /^c.*e$' {rows += 1} END {print rows}' -> set rows to 0 on the zeroth line set and match pattern to later print rows 
 #### basically wc -l but in awk using BEGIN and END
+
+$ awk '$1 != 1 { print $1 }' | paste -sd+ | bc -l
+-> counts all the values not equal to one paste + and add it suing bc
+
+`bc` - is a calculater language 
+
+`R` - is also a programming language for statistics
+
+`gnuplot` - is a plotter lets you take things from stdin
+    generates histograms from the stdin
+
+    Two Special types of data wrangling
+1 cmd line argument wrangling (find)
+
+2
+
+`xargs` - takes lines of i/p and turns them into args
+
+grep -v # to ignore check for the match in stdin
+
+grep -v 'nightly-x86' -> ignores nightly builds in stdin 
+
+$ rustup toolchain list | grep nightly | grep -vE "nightly-x86" | sed 's/-x86.*//' | xargs rustup toolchain uninstall
+
+`ffmpeg` - encoding video and imgs
+
+`convert` - image manipulation tool
+
+## Data Wrangling at it's best
+$ ffmpeg -loglevel panic -i /dev/video0 -frames 1 -f image2 - | convert - -colorspace gray - | gzip | ssh mymachine 'gzip -d | tee copy.jpg | env DISPLAY=:0 feh -'
+
+
+
+
+
+
