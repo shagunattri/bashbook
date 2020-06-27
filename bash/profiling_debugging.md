@@ -55,3 +55,18 @@ System calls
 ```
 $ sudo strace ls -l > /dev/null
 ```
+
+
+
+## Profiling
+
+$ htop -> task manager for linux duh..
+
+$ du -> disk usage
+
+$ ncdu -> interactive version
+
+$ lsof -> list of open files
+
+$ hyperfine -> benchmarking tool
+
