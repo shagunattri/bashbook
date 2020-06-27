@@ -46,6 +46,7 @@ h  l
 
 w -> move cursor frwd by one word
 e -> move cursor to end of word
+b -> move cursor back by one word
 
 0 beginning of the line
 $ ->moves to end of the line
@@ -80,6 +81,15 @@ o - open a new line below the cursor and enter insert mode
 O - open a new line above the cursor and enter insert mode
 
 
+yy - yank a line (copy)
+p - paste a line
+u - undo
+dd - delete line
 
-
-
+```console
+^v - highlight the line 
+j - keep highlighing lines
+y - yank and register
+d - delete
+``
+v - visual mode and highlight word
