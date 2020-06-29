@@ -26,7 +26,7 @@ $ echo "value is  $foo" -> value is bar
 
 spaces are reserved and are for separating args
 
-## defining strings 
+## Defining strings 
 with "" or '' for literal strings
 but single quotes donot replace the value 
 
@@ -38,7 +38,7 @@ $ echo Value\ is\ "$foo" -> Value is bar
 ```
 
 assigning variables is with `$`
-
+```
 `$0` - name of the script
 `$1` -> $9 are for the args in the cmd
 `$@` - all the args
@@ -47,7 +47,7 @@ assigning variables is with `$`
 `$$` - pid of the current script
 `$_` will give you the last arg from the previous command
 `!!` - replace the previous command
-
+```
 
 Eg:
 ```
@@ -64,6 +64,7 @@ $ sudo !! -> run the previous command with sudo
 
 
 >The shell is a programming environment
+
 If the shell is asked to execute a command that doesn’t match one of its programming keywords, 
 it consults an environment variable called `$PATH` 
 that lists which directories the shell should search for programs when it is given a command:
@@ -98,8 +99,8 @@ man   -> manual page
 
 ## Redirection
 - < >
-- >> #append
-- | #pipe
+- append -> >>
+- | 
 
 ```
 missing:~$ ls -l / | tail -n1
@@ -136,7 +137,7 @@ $sudo find -L /sys/class/backlight -maxdepth 2 -name '*brightness*'
 
 
 ## Operators in Bash
-
+```
 $ false || echo "oops fail" -> Oops fail
 
 $ true || echo "Will not be printed" -> nothing printed 
@@ -148,12 +149,12 @@ $ false && echo "Thiss will not print" -> nothing printed
 $ fasle ; echo "This will always print" -> This will always print
 
 ; concatenates commands in the same line and will always execute
+```
+## Output of a command into a variable
 
-## output of a command into a variable
+`foo=$(pwd)`
 
-foo=$(pwd)
-
-echo $foo -> gives pwd o/p
+`echo $foo -> gives pwd o/p`
 
 
 ## Command substitution
@@ -163,8 +164,8 @@ echo $foo -> gives pwd o/p
 ## Process substitution
 
 ```
-                            # create a temp file and 
-$ diff <(ls foo) <(ls bar) # shows file difference between foo and bar dirs
+$ diff <(ls foo) <(ls bar)   # create a temp file and 
+                            # shows file difference between foo and bar dirs
 
 $ cat <(ls) <(ls ..) #op in a temp file and file handle and then cat the output and display in the shell
 ```
@@ -176,15 +177,15 @@ grep -> search for substring
 `$ man test -> utility to evaluate expressions`
 
 
-## file shell expansions with globbing
-#### available with most shells
-#### wildcard matching using ? and *
+## File shell expansions with globbing
+available with most shells
+> wildcard matching using ? and *
 
 For instance, given files foo, foo1, foo2, foo10 and bar, the command rm foo? will delete foo1 and foo2 whereas rm foo* will delete all but bar.
 
-$ ls *.sh #more like some regex anything with a sh
+`$ ls *.sh #more like some regex anything with a sh`
 
-$ ls project? #expand ot a single one
+`$ ls project? #expand ot a single one`
 
 Curly braces {} - Whenever you have a common substring in a series of commands, you can use curly braces for bash to expand this automatically. This comes in very handy when moving or converting files
 
@@ -214,7 +215,7 @@ diff <(ls foo) <(ls bar)
 # > y
 ```
 
-## shell tools
+## Shell tools
 
 ```console
 $ man mv # manual page for mv
