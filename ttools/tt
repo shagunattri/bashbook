@@ -28,6 +28,7 @@ netcat # read and write data across network connections and listen for actions a
 
 #node-js
 tldr
+writegood # linter for English
 
 #pacman
 cmatrix
@@ -44,6 +45,8 @@ broot # directory listing interactive
 nnn # navigation interactive
 tree # friendly format of ls
 dnsutils # dig,host and other n/w utils
+speedtest-cli 
+bat # alternative to cat
 
 # pamac
 parrot-terminal
