@@ -2,33 +2,42 @@
 
 >Bourne Again SHell, or “bash”
 
-Tools:
+>In computing, a shell is a user interface for access to an operating system's services. In general, operating system shells use either a command-line interface (CLI) or graphical user interface (GUI), depending on a computer's role and particular operation. 
+
+>It is named a shell because it is the outermost layer around the operating system.
+
+Useful Shell Tools:
 - grep
 - fzf
 - broot
 - mlocate
 - rg
 - tree
+- bat
+- and many more..........
 
-
-```console
-foo=bar
+```bash
+foo=bar 
 echo $foo # bar
+echo "value is  $foo" -> value is bar
 ```
+
 `~` -> is short for home
+
 `$` -> means you are not root user
 
-```
+```bash
 date -> displays date,time....
 ```
 
-$ echo "value is  $foo" -> value is bar
 
-spaces are reserved and are for separating args
+
+Spaces in the shell is reserved and are for separating arguments.
 
 ## Defining strings 
-with "" or '' for literal strings
-but single quotes donot replace the value 
+with " " or ' ' for literal strings
+
+But single quotes don't replace the value
 
 ```bash
 $ echo 'value is $foo' -> value is $foo
@@ -37,8 +46,11 @@ $ echo Value\ is\ '$foo' -> Value is $foo
 $ echo Value\ is\ "$foo" -> Value is bar
 ```
 
-assigning variables is with `$`
-```
+You can assign variables with `$`
+
+### Useful Shortcodes
+
+```bash
 `$0` - name of the script
 `$1` -> $9 are for the args in the cmd
 `$@` - all the args
@@ -49,8 +61,10 @@ assigning variables is with `$`
 `!!` - replace the previous command
 ```
 
+#### Using shortcodes 
+
 Eg:
-```
+```bash
 $ mkdir /mnt/test -> gives permission denied
 
 you can
@@ -58,9 +72,11 @@ you can
 $ sudo !! -> run the previous command with sudo
 ```
 
+### Exit codes
 
-`0`-exit code means things went fine -> true - 0
-`1`-error -> false - 1
+`0`-exit code means things went fine -> true
+
+`1`-error -> false
 
 
 >The shell is a programming environment
@@ -69,7 +85,7 @@ If the shell is asked to execute a command that doesn’t match one of its progr
 it consults an environment variable called `$PATH` 
 that lists which directories the shell should search for programs when it is given a command:
 
-```
+```bash
 echo $PATH
 
 which echo -> where is echo in the fs
@@ -83,14 +99,20 @@ which echo -> where is echo in the fs
 ## Navigating the Shell
 
 `/`  -> root of the fs
+
 `.`  -> current dir
+
 `..` -> prev dir
 
 
-mv -i -> move -interactive
-cp    -> copy
-mkdir -> make dir
-man   -> manual page
+`mv -i` -> move 
+        -> -i for interactive mode
+
+`cp`    -> copy
+
+`mkdir` -> make dir
+
+`man`   -> manual page
 
 
 ## Streams
@@ -102,21 +124,28 @@ man   -> manual page
 - append -> >>
 - | 
 
-```
-missing:~$ ls -l / | tail -n1
-drwxr-xr-x 1 root  root  4096 Jun 20  2019 var
-missing:~$ curl --head --silent google.com | grep --ignore-case content-length | cut --delimiter=' ' -f2
-219
+### Data Wrangling in a nutshell with redirection
+```bash
+ls -l / | tail -n1
+  drwxr-xr-x 1 root  root  4096 Jun 20  2019 var
 ```
 
-```console
-missing:~$ echo hello > hello.txt
-missing:~$ cat hello.txt
+```bash
+curl --head --silent google.com 
+  | grep --ignore-case content-length 
+  | cut --delimiter=' ' -f2
+
+  219
+```
+
+```bash
+ echo hello > hello.txt
+ cat hello.txt
 hello
-missing:~$ cat < hello.txt
+ cat < hello.txt
 hello
-missing:~$ cat < hello.txt > hello2.txt
-missing:~$ cat hello2.txt
+ cat < hello.txt > hello2.txt
+ cat hello2.txt
 hello
 ```
 
@@ -126,18 +155,23 @@ hello
 
 >sysfs exposes a number of kernel parameters as files, so that you can easily reconfigure the kernel on the fly without specialized tools.
 
-### To chage the the brightness of your laptop’s screen is exposed through a file called brightness under
+#### To change the the brightness of your laptop’s screen is exposed through a file called brightness
 
-```
-$sudo find -L /sys/class/backlight -maxdepth 2 -name '*brightness*'
+```bash
+sudo find -L /sys/class/backlight -maxdepth 2 -name '*brightness*'
 /sys/class/backlight/thinkpad_screen/brightness
 ```
 
-`$ echo 1 | sudo tee /sys/class/leds/input6::scrolllock/brightness`
+#### Another Eg of Data Wrangling
+
+```bash
+$ echo 1 | sudo tee /sys/class/leds/input6::scrolllock/brightness
+```
 
 
 ## Operators in Bash
-```
+
+```bash
 $ false || echo "oops fail" -> Oops fail
 
 $ true || echo "Will not be printed" -> nothing printed 
@@ -150,53 +184,64 @@ $ fasle ; echo "This will always print" -> This will always print
 
 ; concatenates commands in the same line and will always execute
 ```
-## Output of a command into a variable
 
-`foo=$(pwd)`
+### Output of a command into a variable
 
-`echo $foo -> gives pwd o/p`
+```bash
+foo=$(pwd)
 
-
-## Command substitution
-
-`$ echo "We are in $(pwd)"`
-
-## Process substitution
-
-```
-$ diff <(ls foo) <(ls bar)   # create a temp file and 
-                            # shows file difference between foo and bar dirs
-
-$ cat <(ls) <(ls ..) #op in a temp file and file handle and then cat the output and display in the shell
+echo $foo -> prints the present dir
 ```
 
-grep -> search for substring
 
-/dev/null/ - special location where all written changes are later discarded.
+### Command substitution
 
-`$ man test -> utility to evaluate expressions`
+```bash
+echo "We are in $(pwd)"
+```
+
+### Process substitution
+
+```bash
+$ diff <(ls foo) <(ls bar)   
+
+# create a temp file and 
+# shows file difference between foo and bar dirs
+
+$ cat <(ls) <(ls ..) 
+#op in a temp file and file handle and 
+#then cat the output and display in the shell
+```
+
+`grep` -> search for substring
+
+`/dev/null/` -> special location where all written changes are later discarded.
+
+`$ man test` -> utility to evaluate expressions
 
 
-## File shell expansions with globbing
+### Shell expansions with globbing
+
 available with most shells
 > wildcard matching using ? and *
 
-For instance, given files foo, foo1, foo2, foo10 and bar, the command rm foo? will delete foo1 and foo2 whereas rm foo* will delete all but bar.
+For instance, given files foo, foo1, foo2, foo10 and bar, the command rm foo will delete foo1 and foo2 whereas rm foo* will delete all but bar.
 
-`$ ls *.sh #more like some regex anything with a sh`
-
-`$ ls project? #expand ot a single one`
+`$ ls *.sh` -> more like some regex anything with a sh
 
 Curly braces {} - Whenever you have a common substring in a series of commands, you can use curly braces for bash to expand this automatically. This comes in very handy when moving or converting files
 
-```console
+```bash
 convert image.{png,jpg}
 # Will expand to
 convert image.png image.jpg
 
 cp /path/to/project/{foo,bar,baz}.sh /newpath
 # Will expand to
-cp /path/to/project/foo.sh /path/to/project/bar.sh /path/to/project/baz.sh /newpath
+
+cp /path/to/project/foo.sh 
+  /path/to/project/bar.sh 
+  /path/to/project/baz.sh /newpath
 
 # Globbing techniques can also be combined
 mv *{.py,.sh} folder
@@ -204,41 +249,51 @@ mv *{.py,.sh} folder
 
 
 mkdir foo bar
-# This creates files foo/a, foo/b, ... foo/h, bar/a, bar/b, ... bar/h
+
 touch {foo,bar}/{a..h}
-touch foo/x bar/y
+# This creates files foo/a, foo/b, ... foo/h, bar/a, bar/b, ... bar/h
+
+
 # Show differences between files in foo and bar
 diff <(ls foo) <(ls bar)
+
 # Outputs
 # < x
 # ---
 # > y
 ```
 
-## Shell tools
+### Useful Shell tools & Commands
 
-```console
-$ man mv # manual page for mv
+Tons of tools and commands are available to make your shell experience better and the following contains a list of useful commands for the shell to improve your performance.
 
+```bash
+$ man mv # manual page for mv using man
 
-$ mlocate #for searching for files and has a cronjob for updating db index with file data
-        #updatedb to update index
+$ mlocate 
+#for searching for files and has a cronjob for updating 
+#db index with file data
+#updatedb to update index
 
 $ grep -R foobar # recursive search for foobar
 
-$ rg "import requests" -t py -C 5 ~scratch --stats  # ripgrep search for looking at fileswith the "" stmnt in py files   and a context of 5 lines around it
-                                                    # --stats give stats about the search
+$ rg "import requests" -t py -C 5 ~scratch --stats
 
-$ rg -u --files-without-match "^#\!" -t sh     #lookfor sh file  with regex 
-                                                -u # ignore hidden files
+# ripgrep search for looking at fileswith the "" stmnt in py
+#files and a context of 5 lines around it
 
-$ history # prints terminal history
+# --stats give stats about the search
+
+$ rg -u --files-without-match "^#\!" -t sh
+
+#lookfor sh file  with regex
+#-u -> ignore hidden files
 
 $ history 1 # history from the beginning
 
 $ history 1 | grep convert # cmds with convert
 
-$ Ctrl + r # recursive search 
+$ Ctrl + r # recursive search
 
 $ ctrl + r + fzf # good search :)
 
