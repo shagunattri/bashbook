@@ -212,4 +212,4 @@ find with f
 
 `.` -repeat previous task/command
 
-
+`:s` - substitute
