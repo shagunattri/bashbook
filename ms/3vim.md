@@ -9,31 +9,47 @@ the interface is a programming language in itself -> fundamental idea of vim
 
 >""edit as you think""
 
+Vim is programmable using Vimscript,where commands are composable and it's interface itself is a programming language.
+
+Vim avoids usage of mouse because it is slow,also the arrow keys as it requires too much movement.
+
 
 ### Operation Modes
 
-normal - esc
+>normal - esc
+For movinf around a file and making edits
 
-insert - i
+>insert - i
+Inserting text
 
-replace - r
+>replace - r
+Replacing text
 
-visual - v
+>visual - v
+- Visual Line mode - V
+- Visual block mode - ^V
 
-Visual Line mode - V
+For selecting blocks of text
 
-Visual block mode - ^V
+>command line mode - :
+For running a command
 
-command line mode - :
 
 >Keystrokes have different meanings in different operating modes. 
 
+### The Basics
 
 `:quit :q` -> quit current window you are in 
 
 `:qa` -> quit all
 
-`:w` -> save
+`:w` -> save/write
+
+`:wq` -> save and quit
+
+`:e {file name}` -> open file for editing content
+
+`:ls` -> show open buffers
 
 `:help` <key> -> help 
 
@@ -44,15 +60,20 @@ command line mode - :
 `^D` -> to move around in normal mode
 
 Vim maintains buffers i.e a set of open files.
-buffers of tabs/spaces is different in vim
-windows are merely views. A given buffer may be open in multiple windows, even
-within the same tab. This can be quite handy, for example, to view two different parts
+
+Buffers of tabs/spaces is different in vim
+
+Windows are merely views. A given buffer may be open in multiple windows, even
+
+Within the same tab. This can be quite handy, for example, to view two different parts
 of a file at the same time.
 
 
 `:sp` make split and open same file making a new tab
 
-`hjkl` -> movement
+### Movement
+
+`hjkl` -> keys for movement
 
 ```
  k
@@ -177,14 +198,18 @@ find with f
 
 `%` -jump b/w parenthesis
 
+`/{regex}` - search
+
 `di(` - delete content inside paranthesis
 
 `da(` - delete around paranthesis including ()
 
 `a` - append
 
-`n` -next match in search
+`n, /N` -next match in search
 
 `ci'` - change contents inside quotes
 
 `.` -repeat previous task/command
+
+
