@@ -47,6 +47,8 @@ tree # friendly format of ls
 dnsutils # dig,host and other n/w utils
 speedtest-cli 
 bat # alternative to cat
+ranger # file manager
+fasd #to improve navigating files
 
 # pamac
 parrot-terminal
