@@ -54,7 +54,7 @@ fasd #to improve navigating files
 parrot-terminal
 pfetch
 cheat
-
+checksec #find details about file binaries
 # yay
 cheat
 
