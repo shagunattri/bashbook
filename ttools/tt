@@ -75,7 +75,7 @@ getJS #go get github.com/003random/getJS
 subjs #GO111MODULE=on go get -u -v github.com/lc/subjs
 linkfinder #find endpoints in Js files #https://github.com/GerbenJavado/LinkFinder
 Secretfinder(based on linkfinder) #https://github.com/m4ll0k/SecretFinder 
-
+hakcheckurl # go get github.com/hakluke/hakcheckurl #url http response code 
 
 # pip
 termdown #https://github.com/trehn/termdown #countdown timer and stopwatch
