@@ -49,12 +49,15 @@ speedtest-cli
 bat # alternative to cat
 ranger # file manager
 fasd #to improve navigating files
+ghidra
 
 # pamac
 parrot-terminal
 pfetch
 cheat
 checksec #find details about file binaries
+burpsuite
+
 # yay
 cheat
 
@@ -64,3 +67,16 @@ vim
 nodejs
 npm
 tmux
+
+
+# go tools recon
+gau #GO111MODULE=on go get -u -v github.com/lc/gau
+getJS #go get github.com/003random/getJS
+subjs #GO111MODULE=on go get -u -v github.com/lc/subjs
+linkfinder #find endpoints in Js files #https://github.com/GerbenJavado/LinkFinder
+Secretfinder(based on linkfinder) #https://github.com/m4ll0k/SecretFinder 
+
+
+# pip
+termdown #https://github.com/trehn/termdown #countdown timer and stopwatch
+
