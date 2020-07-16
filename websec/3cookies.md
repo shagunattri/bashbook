@@ -42,7 +42,7 @@ Cookie: username=alice;
 ```
 
 ### Ambient Authority 
-Ambient authority is a security concept whih allows you to regulate who can do what on the site
+Ambient authority is a security concept which allows you to regulate who can do what on the site
 
 >A subject, such as a computer program, is said to be using ambient authority if it only needs to specify the names of the involved object(s) and the operation to be performed on them in order for a permitted action to succeed.
 
@@ -78,7 +78,7 @@ A signature scheme consists a triple of algorithms(G,S,V):
 #### G() 
 >G() -> (pk.sk)
 
-When the Generator fn. is called it generates a public,private key whih is used further.
+When the Generator fn. is called it generates a public,private key which is used further.
 
 
 
@@ -121,7 +121,7 @@ After it is verified,we can process the information and repeat the cookies so as
 - Implemented in 1994 in Netscape and described in a four-page draft
 - Had no spec for 17 years
 - Attempts were made in 1997 and 2000 to spec but had incompatible  changes thus were not successful
-- Finally in 2011 efforts succeeded and RF6265 was made.
+- Finally in 2011 efforts succeeded and RFC6265[^6265] was made.
 - Cookies have a very Ad-hoc design and have led to interesting issues.
 
 ### Cookie Attributes
@@ -237,3 +237,5 @@ Ambient Authority:https://en.wikipedia.org/wiki/Ambient_authority
 [^rfc]:https://tooils.ietf.org/html/rfc7617
 
 [^cc]:https://tools.ietf.org/html/rfc5246#section-7.4.4
+
+[^6265]:https://tools.ietf.org/html/rfc6265
