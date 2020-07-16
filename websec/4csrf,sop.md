@@ -128,6 +128,7 @@ This would also affect ad-tracking as bad behaviour.
 
 ### Implementing Measures
 
+
 ```javascript
 res.cookie('sessionId', sessionId, {
     secure: true,
@@ -159,11 +160,11 @@ Set-Cookie: key=value; Secure; HttpOnly; Path=/;SameSite=Lax; Expires=Fri, 1 Nov
 Same origin is the core and fundamental security model of the web where two different pages form different sources should not be allowed to interact/interfere with each other.
 It restricts how documents and scripts from one origin can interact with resources on another origin.
 
-The browser is capable of loadin multiple sites from different sources in many tabs and sites can embed multiple iframes from different sites.
+The browser is capable of loading multiple sites from different sources in many tabs and sites can embed multiple iframes from different sites.
 If there is no SOP the attacker can run scripts and expose user's browser.
 
  Given two separate JavaScript execution contexts, one should be able to access the other only if the protocols, hostnames, and port numbers associated with their host documents match exactly.
- This "protocol-host-port tuple" is called an "origin".
+ This **"protocol-host-port tuple"** is called an **"origin"**
 
 
 SOP prevents this from happening by blocking read access to resources loaded from a different origin.

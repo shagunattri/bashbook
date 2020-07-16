@@ -164,4 +164,60 @@ You can use sameSite cookies to also defend against this.
     - There are important exceptions to the Same Origin Policy (images, scripts, iframes, form POSTs)
     - Avoid using broken mechanisms like cookie Path and document.domain
 
+### Can we prevent a site from linking to our site?
+- Why do this?
+    - Search Engine Optimization (SEO)
+    - Make the linking site look bad?
+- How might we accomplish this?
+    - Can't prevent the link itself
+    - Can we reject request?
 
+One way to prevent linking is by using the referer header and checking it whenever a site refers to your site.
+
+### Referrer-Policy HTTP header
+
+- Referrer-Policy: unsafe-url
+    - Send full URL.
+- Referrer-Policy: no-referrer
+    - Never send Referer
+- Referrer-Policy: no-referrer-when-downgrade (default)
+    - Send full URL. When HTTPS → HTTP downgrade, send nothing.
+- Referrer-Policy: origin
+    - All: Send origin instead of full URL.
+    - sends the origin not the whole path of site where the link was attached
+- Referrer-Policy: origin-when-cross-origin
+    - Same origin: send full URL. Cross origin: send origin.
+- Referrer-Policy: same-origin
+    - Same origin: send full URL. Cross origin: send nothing.
+- Referrer-Policy: strict-origin
+    - Send origin. When HTTPS → HTTP downgrade, send nothing.
+- Referrer-Policy: strict-origin-when-cross-origin
+    - Same origin: send full URL. Cross origin: send origin. When HTTPS → HTTP downgrade, send nothing.
+
+
+set by the site that has the links for it.
+
+
+prevent linking is hard and is complex.
+
+
+### Can we prevent a site from embedding our site?
+
+- Why do this?
+    - Prevent clickjacking attacks
+- How might we accomplish this?
+    - Check if we are framed via JavaScript (frame busting)
+    - Need a new HTTP header!
+
+*Look at busting frame busting paper => a study on clickjacking vulnerabilities on popular sites*
+
+### Frame Busting
+Is code where the site that is being framed and looks at its parent and finds out if it is being framed.
+
+```javascript
+if (window.top.location != window.location) {
+    window.top.location = window.location
+}
+
+//Don't do this!
+```
