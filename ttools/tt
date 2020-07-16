@@ -50,7 +50,7 @@ bat # alternative to cat
 ranger # file manager
 fasd #to improve navigating files
 ghidra
-
+figlet # ascii art
 # pamac
 parrot-terminal
 pfetch
