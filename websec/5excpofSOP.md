@@ -291,4 +291,74 @@ Samesite cookies prevent cookies to be sent but the form is never the less submi
 - Is site A allowed to read data from site B? No!
 
 
+### Is site A allowed to read data from site B?
+No!
+- Important: embedding an image, script, or iframe is not "reading data"
+    - We could embed images, scripts, but not read the actual raw data in them
+    - For iframes we couldn't access the DOM to read/write it
+- This is precisely what we mean by "reading data":
 
+```javascript
+const res = await fetch('https://axess.stanford.edu/transcript.pdf')
+const data = await res.body.arrayBuffer()
+console.log(data)
+```
+
+### Is site A allowed to read data from site B?
+If a page cooperates, then it can share data with another site
+    - e.g. make an iframe and use postMessage to communicate
+- What about for arbitrary (e.g. non-HTML) resources?
+    - e.g. an API server that returns the current date as JSON:
+
+        { "date": 1570552348157 }
+
+#### Problem: How to access data from client?
+- Ideally, **site-a.com** could write this code:
+
+const res = await fetch('https://site-b.com/api/date')
+const data = await res.body.json()
+console.log(data)
+- Need some way for site to specify that response is allowed to be read
+    - Ideally, HTTP response could specify an HTTP header indicating that reading this data is allowed
+
+### Use <script> for cross-origin communication?
+- Goal: site-a.com wants to read data from a cooperating site-b.com
+- What if we requested data using a <script> tag?
+    - <script> is not subject to the Same Origin Policy
+- Remember: Cannot read data from a cross-origin script!
+    - But, the contents will be treated as JavaScript and executed
+
+a Naive Idea is to 
+Add a script to site-a.com:
+
+```javascript
+<script src='https://site-b.com/api/date'></script>
+```
+
+Response from site-b.com/api/date:
+
+{ "date": 1570552348157 }
+
+### JSON with Padding (JSONP)
+
+Add a script to site-a.com:
+
+```javascript
+<script>
+    function handleTime (data) {
+        console.log('got the date', data.date)  
+    }
+</script>
+<scriptsrc='https://site-b.com/api/date?callback=handleTime'></script>
+```
+Response from site-b.com/api/date?callback=handleTime:
+
+handleTime({ "date": 1570552348157 })
+
+### Downsides of JSONP
+- From site-a.com's perspective:
+    - Need to write additional code to support cross-origin requests
+    - Need to be careful: Some valid JSON strings are not legal JavaScript
+    - Need to sanitize user-provided callback argument (see "reflected file download attack")
+- From site-b.com's perspective:
+    - Only want to get data from site-a.com, but need to give site-a.comthe ability to run arbitrary JavaScript – yikes!
