@@ -221,3 +221,74 @@ if (window.top.location != window.location) {
 
 //Don't do this!
 ```
+Better ways to do it now by using headers 
+
+### X-Frame-Options HTTP Header
+Let's you decide whether you want to embed site contents to another site.
+
+- X-Frame-Options not specified (Default)
+    - Any page can display this page in an iframe
+- X-Frame-Options: deny
+    - Page can not be displayed in an iframe
+- X-Frame-Options: sameorigin
+    - Page can only be displayed in an iframe on the same origin as the page itself
+    - does not allow embedding in attacker.com if you are shagun.xyz
+
+
+#### What does X-Frame-Options: 
+#### sameorigin actually mean?
+
+- What should happen if target.com embeds othersite.com which embeds target.com?
+- Until recently, browsers performed a check only against top-level window
+- Thus, attackers could set up a framing chain which would be allowed:
+    - target.com embeds attacker.com embeds target.com
+
+
+### Can we prevent a site from submitting a form to our site?
+- Why do this?
+    - Prevent cross-site request forgery (CSRF)
+- How might we accomplish this?
+    - Detect Origin header, use an allowlist
+    - SameSite cookies
+Samesite cookies prevent cookies to be sent but the form is never the less submitted.
+
+
+### Can we prevent a site from embedding images from our site?
+- Why do this?
+    - Prevent hotlinking - another site linking to your site and uses all your bandwidth
+    - Prevent user's logged-in avatar from showing up on other sites
+- How might we accomplish this?
+    - For hotlinking: Detect **Referer** header, use an allowlist (not foolproof)
+    - For avatar: Use **SameSite cookies**
+    - For avatar: Use an **unpredictable URL**
+
+
+### Can we prevent a site from embedding scripts from our site?
+- Why do this?
+    - Prevent hotlinking
+- Important notes
+    - Scripts typically do not contain private user data
+    - Scripts run in the context of the embedding site
+- How might we accomplish this?
+    - Detect Referer header, use an allowlist (not foolproof) 
+
+```javascript
+// typical cross origin script embed
+<script src='https://ajax.googleapis.com/ajax/libs/d3js/5.12.0/d3.min.js'></script>
+<script>  
+    d3.select('svg').selectAll('rect').data(data).enter()
+</script>
+```
+
+### What does Same Origin Policy allow?
+- Is site A allowed to link to site B? Yes! Or no! (No is not foolproof)
+- Is site A allowed to embed site B? Yes! Or no!
+- Is site A allowed to embed site B and modify its contents? No!
+- Is site A allowed to submit a form to site B? Yes! Or no!
+    - Middle ground: SameSite prevents cross-origin cookie inclusion while still allowing form submission
+- Is site A allowed to embed images from site B? Yes! Or no! (No is not foolproof)
+- Is site A allowed to embed scripts from site B? Yes! Or no! (No is not foolproof)
+- Is site A allowed to read data from site B? No!
+
+
+
