@@ -57,6 +57,7 @@ pfetch
 cheat
 checksec #find details about file binaries
 burpsuite
+socat #setup bidirectional byte streams
 
 # yay
 cheat
