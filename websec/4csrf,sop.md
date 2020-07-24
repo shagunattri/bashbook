@@ -235,3 +235,8 @@ Example: attacker.shagun.xyz can also set document.domain to shagun.xyz to becom
 
  Use the postMessage API
 
+### Further Reading
+
+https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
+
+https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html

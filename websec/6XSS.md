@@ -468,3 +468,12 @@ It is designed based on Roubustness principle
 - Escaping assignment to someValue is relatively easy
 - But easy to forget to further escape the setTimeout construction!
 - Better to avoid writing this kind of code!
+### Further Reading
+
+http://research.sidstamm.com/papers/csp-www2010.pdf
+
+https://storage.googleapis.com/pub-tools-public-publication-data/pdf/45542.pdf
+
+https://developers.google.com/web/updates/2019/02/trusted-types
+
+https://fastmail.blog/2015/12/20/sanitising-html-the-dom-clobbering-issue/

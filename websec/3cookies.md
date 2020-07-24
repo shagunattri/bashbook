@@ -239,3 +239,9 @@ Ambient Authority:https://en.wikipedia.org/wiki/Ambient_authority
 [^cc]:https://tools.ietf.org/html/rfc5246#section-7.4.4
 
 [^6265]:https://tools.ietf.org/html/rfc6265
+
+https://web.dev/samesite-cookies-explained/
+
+https://tools.ietf.org/html/draft-west-cookie-incrementalism-00#section-4.1
+
+https://scotthelme.co.uk/csrf-is-dead/
