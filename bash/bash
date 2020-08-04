@@ -1,0 +1,13 @@
+pwd #show current location
+
+uname [-a] #display system information
+
+free [-h] #show memory usage
+
+df [-h] #show disk space usage
+
+ps [aux] #print process information
+
+id #show current user id
+
+hexdump [-C] # display data in jex numbers
