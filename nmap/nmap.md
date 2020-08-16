@@ -116,3 +116,18 @@ sudo nmap -p25 --script smtp-enum-users --script-args smtp-enum-users.methods={V
 sudo nmap -p25 --script smtp-enum-relay 192.123.12.145
 #connect and send emails using open relays and helps bypass authentication
 ```
+
+### HTTP Enumeration
+
+`Detecting HTTP Methods`
+
+```bash
+
+ls -al /usr/share/nmap/scripts/ | grep -e "http"
+#list http scripts in the nse
+
+nmap -Pn -sV 80 -T4 --script http-methods --script-args http-methods.test=all nmap.scanme.org
+#gives banner and http methods supported by the server
+```
+
+
