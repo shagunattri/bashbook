@@ -138,3 +138,15 @@ nmap -F -sV -T5 192.168.132.12
 nmap -sV -p 80 --script http-enum 192.168.13.43
 #list hidden dirs
 ```
+
+`WAF Detection and fingerprinting`
+
+```bash
+ ls -al /usr/share/nmap/scripts/ | grep -e "http-waf"
+ #list http-waf files
+
+ nmap -Pn -p 80,443 --script http-waf-detect,http-waf-fingerprint shagun.xyz
+
+
+
+```
