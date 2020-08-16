@@ -129,5 +129,12 @@ ls -al /usr/share/nmap/scripts/ | grep -e "http"
 nmap -Pn -sV 80 -T4 --script http-methods --script-args http-methods.test=all nmap.scanme.org
 #gives banner and http methods supported by the server
 ```
+`Find hidden files and dirs`
 
+```bash
+nmap -F -sV -T5 192.168.132.12
+#service version detection scan
 
+nmap -sV -p 80 --script http-enum 192.168.13.43
+#list hidden dirs
+```
