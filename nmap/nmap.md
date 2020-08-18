@@ -129,7 +129,7 @@ ls -al /usr/share/nmap/scripts/ | grep -e "http"
 nmap -Pn -sV 80 -T4 --script http-methods --script-args http-methods.test=all nmap.scanme.org
 #gives banner and http methods supported by the server
 ```
-`Find hidden files and dirs`
+### Find hidden files and dirs
 
 ```bash
 nmap -F -sV -T5 192.168.132.12
@@ -139,14 +139,87 @@ nmap -sV -p 80 --script http-enum 192.168.13.43
 #list hidden dirs
 ```
 
-`WAF Detection and fingerprinting`
+### WAF Detection and fingerprinting
 
 ```bash
  ls -al /usr/share/nmap/scripts/ | grep -e "http-waf"
  #list http-waf files
 
  nmap -Pn -p 80,443 --script http-waf-detect,http-waf-fingerprint shagun.xyz
+```
 
+### SMB Enumeration
 
+SMB - Server Message block
 
+used for file and peripheral sharing(printer) and communicate between each other.
+
+```bash
+ls -al usr/share/nmap/scripts/ | grep -e "smb"
+# attack vector is similar to eternal blue,double pulsar
+
+sudo nmap -p 445 --script smb-os-discovery 192.123.1.13
+#gives os,computer name,netBIOS,workgroup and sys time
+
+sudo nmap -p 445 -script smb-enum-shares 192.123.1.13
+#gives account access,user and workgroup
+
+sudo nmap -p 445 --script smb-protocols 192.133.32.12
+#detect smb version
+
+sudo nmap -p 445 --script smb-double-pulsar-protocols 192.211.31.12
+
+sudo nmap -p 445 --script smb-vuln-ms17-010 192.211.31.12
+
+sudo nmap -p 445 --script=smb-vuln* --script-args=unsafe=1 192.211.31.12
+```
+
+### MySQL Enumeration
+
+```bash
+ls -al usr/share/nmap/scripts/ | grep -e "mysql"
+
+sudo nmap -p 3306 --script mysql-info 192.123.1.13
+#gives protocol,version,capabilities,status
+
+sudo nmap -p 3306 --script mysql-enum 192.123.1.13
+#accounts and stats
+
+sudo nmap -p 3306 --script mysql-empty-password 192.123.1.13
+#check for null passwords
+
+mysql -u root -h 192.168.1.217 -p
+
+sudo nmap -p 3306 --script mysql-brute --script-args mysql-brute.threads=100 192.123.1.13
+#brute force login
+```
+
+### Vulnerability Scanning 
+
+```bash
+ls -al usr/share/nmap/scripts/ | grep -e "vulners"
+
+sudo nmap -sV -p21-8080 --script vulners 192.123.1.13
+```
+
+### Firewall Evasion
+
+MTU -minimum transmission unit
+
+fragmenting packets into tiny parts 8 bytes and using decoys
+```bash
+
+sudo nmap -sS -sV -F -D RND:3 nmap.scanme.org
+#-sS syn scan
+#RND to use eandom ip addresses
+#-D for decoys
+
+sudo nmap -sS -sV -F -D 171.124.180.173 nmap.scanme.org
+#run using a single decoy
+
+sudo nmap -sS -sV -F -f --send-eth -D 171.124.180.173 nmap.scanme.org
+#-f fragment packet
+
+sudo nmap -sS -sV -F -f --mtu 16 --send-eth -D 171.124.180.173 nmap.scanme.org
+#--mtu for packet size 16 bytes
 ```
