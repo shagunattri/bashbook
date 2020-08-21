@@ -56,3 +56,11 @@ $ echo uber.com | waybackurls | head #look for urls in the wayback machine
 $ git checkout master^^^ # go back three commits
 
 $ git checkout - # go to live HEAD ver
+
+### hydra
+
+sudo hydra -l "dwight.schrute" -P wordlist.txt 50.116.24.84 ssh 
+
+### hashcat
+
+sudo hashcat -a 0 -m 1800 -o crackedpass.txt hash.txt wordlist.txt
