@@ -41,3 +41,76 @@ VT is for uplading/scanning and researching virus samples.
 
 
 ### Yara Rules 
+
+In VT you can make rulesets and use the YARA templatea to pattern match malware samples
+
+```yara
+rule yara_template
+{
+	strings:
+		$a = "first string"
+		$b = "second string"
+		$c = "third string"
+		$d = "fourth string"
+	condition:
+		all of them
+}
+```
+Check for four strings and trigger notification when all of them are satisfied in the pattern
+
+```yara
+rule silent_banker : banker
+{
+	meta:
+		description = "This is just an example"
+		thread_level = 3
+		in_the_wild = true
+
+	strings:
+		$a = {6A 3A 4F 5G 6J 7V 2G 13 54 F5 91}
+		$b = {3D 5F 5G 32 FE 42 C5 D3 5T G5 45}
+		$c = "UDFGHJMNBVCDFGHJMNBVGYJKM"
+
+	condition:
+		$a or $b or $c
+}
+```
+
+Strings with the hex bytes,where we are matching conditions wiht either a or b or c.
+
+
+
+sample for files with request sent to a website:
+```yara
+import "cuckoo"
+
+rule example_19
+{
+	condition:
+		cuckoo.network.http_request(/www\.google\.com/)
+}
+
+```
+
+
+using cuckoo to define string with hex bytes and checking for string and sending request to sites.
+
+```yara
+import  "cuckoo"
+
+rule evil_doer
+{
+	strings:
+		$a = {01 23 25 67 98 47}
+
+	condition:
+		$some_string and cuckoo.network.http_request(/http:\/\/someone\.doingevil\.com/)
+}
+```
+
+
+### Further Reading
+
+https://github.com/VirusTotal/yara
+
+http://virustotal.github.io/yara/
