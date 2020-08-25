@@ -114,3 +114,13 @@ rule evil_doer
 https://github.com/VirusTotal/yara
 
 http://virustotal.github.io/yara/
+
+
+### VT GRAPH
+
+start investigation with a hash,IP and details the graph with sample info,properties
+- Gives file information
+- Root node
+- Show bundled files
+- Relationship nodes
+- Full expansion of nodes and the relations
