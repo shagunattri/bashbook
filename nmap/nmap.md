@@ -1,5 +1,15 @@
 ### Nmap
 
+
+Useful flags:
+
+`-p` Used to specify which port to analyze, can also be used to specify a range of ports i.e -p 1-1000
+
+`-sC` Runs default scripts on the port, useful for doing basic analysis on the service running on a port
+
+`-A` Aggressive mode, go all out and try to get as much information as possible
+ 
+ 
 ```bash
 nmap -sP 157.230.43.191 
 # p-ping all hosts to the network
