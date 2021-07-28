@@ -11,3 +11,5 @@ ps [aux] #print process information
 id #show current user id
 
 hexdump [-C] # display data in jex numbers
+
+ping -c 4 8.8.8.8 # ping request count set to 4
